@@ -23,17 +23,6 @@ Keywords: calm, serene, quiet, relaxed
 
 ## Application Preview
 
-### Write Journal Entry
-
-![Write Entry](screenshots/write-entry.png)
-
-### AI Emotion Analysis
-
-![Emotion Analysis](screenshots/analysis.png)
-
-### Insights Dashboard
-
-![Insights](screenshots/insights.png)
 
 ## Tech Stack
 
