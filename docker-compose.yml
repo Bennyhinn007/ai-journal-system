@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  backend:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - PORT=5000
+      - NODE_ENV=production
+    volumes:
+      - ./server:/app/server
+      - ./.dist:/app/.dist
+    command: node server/server.js
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:5000/api/health', (r) => {if (r.statusCode !== 200) throw new Error(r.statusCode)})"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  frontend:
+    image: node:18-alpine
+    working_dir: /app/client
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client:/app/client
+    command: npm install && npm start
+
+volumes:
+  dist:
